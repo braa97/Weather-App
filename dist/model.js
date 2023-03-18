@@ -16,6 +16,25 @@ class Model {
             this._data.push(weatherData)
         })
     }
+
+    addCity(city) {
+        return $.post('/weather', {
+            name: city.name,
+            temperature: city.temperature,
+            condition: city.condition,
+            conditionPic: city.conditionPic
+        })
+    }
+
+    deleteCity(name) {
+        return $.ajax({
+            url: `/weather/${name}`,
+            type: 'DELETE',
+            success: function(response) {
+                console.log("City deleted");
+            }
+         })
+    }
     
     get getData() {
         return this._data

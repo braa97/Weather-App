@@ -3,12 +3,12 @@ const router = express.Router();
 const axios = require('axios')
 const Weather = require('../models/weather');
 const WeatherObj = require('../models/weatherClass')
-const weaterApiKey = "417c1e5fcfad3384e413c8f4c74f1bde"
+const weatherApiKey = "417c1e5fcfad3384e413c8f4c74f1bde"
 const weatherApiCall = "http://api.openweathermap.org/data/2.5/weather"
 
 router.get("/weather/:city", function (req, res) {
     city = req.params.city
-    axios.get(`${weatherApiCall}?q=${city}&APPID=${weaterApiKey}&units=metric`)
+    axios.get(`${weatherApiCall}?q=${city}&APPID=${weatherApiKey}&units=metric`)
     .then((weatherData) => {
         const weather = new WeatherObj(weatherData.data.name, weatherData.data.main.temp, weatherData.data.weather[0].description, weatherData.data.weather[0].icon)
         res.send(weather)
