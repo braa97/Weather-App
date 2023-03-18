@@ -7,10 +7,31 @@
     <link rel="stylesheet" href="style.css">
     <script src="/handlebars/dist/handlebars.js"></script>
     <script src="/jquery/dist/jquery.js"></script>
+    <script src="https://kit.fontawesome.com/2d46c73150.js" crossorigin="anonymous"></script>
     <title>Weather</title>
 </head>
 <body>
-
+    <div class="container">
+        <div class="input-field">
+            <input placeholder="City" id="search-field" type="text">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="forcast">
+            <div class="card">
+                <div class="add-remove-btn"><i class="fa-solid fa-circle-plus"></i></div>
+                <div class="details">
+                    <div class="temp-city">
+                        <div id="temp">9 C</div>
+                        <div id="city">Arrabah</div>
+                    </div>
+                    <div class="condition-icon">
+                        <div id="condition-icon"></div>
+                        <div id="condition"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="model.js"></script>
     <script src="renderer.js"></script>
