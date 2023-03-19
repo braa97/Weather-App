@@ -28,7 +28,7 @@ $(".forcast").on("click", ".fa-circle-plus", function() {
     let conditionPic = card.find("#icon").data('id')
     let city = {name: name, temperature: temperature, condition: condition, conditionPic: conditionPic}
     model.addCity(city).then((doc) => {
-        // $(this).removeClass('fa-circle-plus').addClass('fa-circle-minus')
+        $(this).removeClass('fa-circle-plus').addClass('fa-circle-minus')
         // $(this).closest(".card").attr('data-id', doc._id)
     })
 })

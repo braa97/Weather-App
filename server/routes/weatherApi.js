@@ -25,14 +25,16 @@ router.post("/weather", (req, res) => {
     let condition = req.body.condition
     let conditionPic = req.body.conditionPic
     let weather = new Weather({name, temperature, condition, conditionPic})
-    weather.save().then((doc) => res.status(200).send(doc))
+    weather.save().then((doc) => res.status(201).send(doc))
+    .catch((err) => {
+        console.log(err);
+    })
 })
 
 router.delete("/weather/:city", (req, res) => {
     let city = req.params.city
     Weather.findOneAndDelete({name: city})
     .then((doc) => {
-        console.log("Deleted weather: ");
         res.send("Deleted successfully.")
     })
     .catch((err) => {
