@@ -1,8 +1,11 @@
 class Renderer {
+    constructor() {}
     
     render(data) {
-        weatherElement.empty()
+        let weatherElement = $(".forcast")
+        let Source = $("#weatherCityContainer").html()
+        let template = Handlebars.compile(Source);
         let newHTML = template(data);
-        weatherElement.append(newHTML)
+        weatherElement.empty().append(newHTML)
     }
 }

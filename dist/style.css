@@ -29,6 +29,9 @@ input[type="text"] {
     color: white;
     margin-left: 2%;
     font-size: 2rem ;
+}
+
+.fa-solid {
     cursor: pointer;
 }
 
@@ -46,6 +49,7 @@ input[type="text"] {
     display: grid;
     grid-template-columns: 15%;
     grid-template-areas: "ar d";
+    margin: 3% 0 0 0;
 }
 
 .add-remove-btn {
@@ -95,8 +99,8 @@ input[type="text"] {
 #icon {
     display: flex;
     justify-content: center;
-    align-items: end;
-    font-size: 2.5rem; 
+    align-items: start;
+    font-size: 2rem;
 }
 
 #condition {
@@ -106,4 +110,5 @@ input[type="text"] {
     font-size: 1.5rem;
 }
 
-.fa-circle-plus {}
+
+

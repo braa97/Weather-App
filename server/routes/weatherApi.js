@@ -10,7 +10,7 @@ router.get("/weather/:city", function (req, res) {
     city = req.params.city
     axios.get(`${weatherApiCall}?q=${city}&APPID=${weatherApiKey}&units=metric`)
     .then((weatherData) => {
-        const weather = new WeatherObj(weatherData.data.name, weatherData.data.main.temp, weatherData.data.weather[0].description, weatherData.data.weather[0].icon)
+        const weather = new WeatherObj(weatherData.data.name, Math.round(weatherData.data.main.temp), weatherData.data.weather[0].description, weatherData.data.weather[0].icon)
         res.send(weather)
     })
   });
@@ -25,14 +25,14 @@ router.post("/weather", (req, res) => {
     let condition = req.body.condition
     let conditionPic = req.body.conditionPic
     let weather = new Weather({name, temperature, condition, conditionPic})
-    weather.save().then(() => res.status(200).send("Added"))
+    weather.save().then((doc) => res.status(200).send(doc))
 })
 
 router.delete("/weather/:city", (req, res) => {
     let city = req.params.city
     Weather.findOneAndDelete({name: city})
     .then((doc) => {
-        console.log("Deleted weather: ", doc);
+        console.log("Deleted weather: ");
         res.send("Deleted successfully.")
     })
     .catch((err) => {

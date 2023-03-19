@@ -1,19 +1,41 @@
-// const Source = $("#").html()
-// const template = Handlebars.compile(Source);
-// const recipeElement = $(".")
+const model = new Model()
+const renderer = new Renderer()
 
-let model = new Model()
+window.onload = function() {
+    model.getCities().then(() => {
+        renderer.render(model.getData)
+    })
+}
 
-model.getCities().then(() => {
-    console.log(model.getData);
+
+$("#search").on("click", () => {
+    let cityName = $("#search-field").val()
+    if (!cityName) {
+        alert("City field cannot be empty")
+        return
+    }
+    model.getCity(cityName).then(() => {
+        renderer.render(model.getData)
+        $("#search-field").val("")
+    })
 })
 
-// model.deleteCity("Ibillin")
+$(".forcast").on("click", ".fa-circle-plus", function() {
+    let card = $(this).closest(".card")
+    let name = card.find("#city").text()
+    let temperature = card.find("#temp").text()
+    let condition = card.find("#condition").text()
+    let conditionPic = card.find("#icon").data('id')
+    let city = {name: name, temperature: temperature, condition: condition, conditionPic: conditionPic}
+    model.addCity(city).then((doc) => {
+        // $(this).removeClass('fa-circle-plus').addClass('fa-circle-minus')
+        // $(this).closest(".card").attr('data-id', doc._id)
+    })
+})
 
-// model.getCities().then(() => {
-//     console.log(model.getData);
-// })
-
-// let city = {name: "Arrabah", temperature: 24, condition: "Cloudy with a chance of meatballs", conditionPic: "05b"}
-
-// model.addCity(city)
+$(".forcast").on("click", ".fa-circle-minus", function() {
+    let name = $(this).closest(".card").find("#city").text()
+    model.deleteCity(name).then((doc) => {
+        $(this).removeClass('fa-circle-minus').addClass('fa-circle-plus')
+    })
+})
