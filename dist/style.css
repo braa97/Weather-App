@@ -60,7 +60,7 @@ input[type="text"] {
     grid-area: d;
     display: grid;
     grid-template-columns: 50%;
-    grid-template-areas: "tc ic";
+    grid-template-areas: "tc ci";
     color: white;
 }
 
@@ -85,6 +85,25 @@ input[type="text"] {
     font-size: 1.5rem;
 }
 
+.condition-icon {
+    grid-area: ci;
+    display: grid;
+    grid-template-rows: 50%;
+    grid-template-areas: "icon" "condition";
+}
 
+#icon {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 2.5rem; 
+}
+
+#condition {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    font-size: 1.5rem;
+}
 
 .fa-circle-plus {}
